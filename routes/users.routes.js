@@ -4,6 +4,7 @@ const {users} = require('../data');
 const Users = require('../models/users.models')
 
 
+
 router.get('/users',(req,res)=>{
     try{
         Users.find().then((data)=>{
