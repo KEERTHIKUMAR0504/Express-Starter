@@ -76,7 +76,7 @@ exports.forgotPassword = async (req,res)=>{
             return res.status(400).send({message:"User doesn't exist."})
         }
 
-        let token = await Tokens.findOne({userId:_id})
+        let token = await Tokens.findOne({userId:user._id})
 
         if(token){
             await token.deleteOne()
@@ -95,7 +95,7 @@ exports.forgotPassword = async (req,res)=>{
         return res.status(200).send({message:'Email has been sent successfully.'})
     }catch(error){
         console.log('Error:',error)
-        res.status.send(500).send({message:'Internal Server Error.'})
+        res.status.status(500).send({message:'Internal Server Error.'})
     }
 }
 
