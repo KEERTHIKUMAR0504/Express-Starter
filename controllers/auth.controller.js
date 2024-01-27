@@ -90,7 +90,7 @@ exports.forgotPassword = async (req,res)=>{
 
         const link = `http://localhost:3000/reset-password?token=${newToken}&id=${user._id}`
 
-        await sendEmail(user.email, 'Reser Password Link', {name:user.name,link:link})
+        await sendEmail(user.email, 'Reset Password Link', {name:user.name,link:link})
 
         return res.status(200).send({message:'Email has been sent successfully.'})
     }catch(error){

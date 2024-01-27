@@ -17,7 +17,7 @@ exports.getUserById = async (req,res)=>{
         let isAdmin = await Users.findOne({_id:req.id});
 
         if(req.id !== req.params.userId && isAdmin.role !== 1){
-            return res.status(401).send({message: 'Action cannot be done!'})
+            return res.status(401).send({message: 'Action cannot be done, access denied!'})
         }
         Users.findById(req.params.userId).then((data)=>{
             if(!data){
@@ -35,7 +35,7 @@ exports.getUserById = async (req,res)=>{
 exports.updateUser = (req, res) => {
     try{
         if(req.id !== req.params.userId){
-            return res.status(401).send({message: 'Action cannot be done!'})
+            return res.status(401).send({message: 'Action cannot be done, access Denied!'})
         }
         Users.findByIdAndUpdate({_id: req.params.userId}, {$set: req.body}).then((data) => {
             res.status(200).send({message: 'User has been updated successfully.', userId: data._id});
